@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "slick"
+version = "0.1.0"
+description = ""
+authors = ["Philipp Hack <philipp.hack@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.1"
+black = "^22.1.0"
+isort = {extras = ["pyproject"], version = "^5.10.1"}
+pyproject-flake8 = "^0.0.1-alpha.2"
+pre-commit = "^2.17.0"
+pytest-cov = "^3.0.0"
+pytest-sugar = "^0.9.4"
+bump2version = "^1.0.1"
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
