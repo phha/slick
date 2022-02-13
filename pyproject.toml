@@ -6,6 +6,8 @@ authors = ["Philipp Hack <philipp.hack@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+click = "^8.0.3"
+PySimpleGUI = "^4.56.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.0.1"
