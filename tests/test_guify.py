@@ -17,7 +17,7 @@ def test_make_widget_for_type(mocker: MockerFixture):
     param.got_called = False
 
     @make_layout.for_type(param.type)
-    def maker(param, name, tooltip):
+    def maker(param):
         param.got_called = True
 
     # when
@@ -29,7 +29,7 @@ def test_make_widget_for_type(mocker: MockerFixture):
 
 def test_make_text_widget(mocker: MockerFixture):
     # given
-    param = mocker.MagicMock(spec=click.Parameter)
+    param = mocker.MagicMock(spec=click.Option)
     param.type = click.types.STRING
     param.name = "hello"
     param.default = "x"
@@ -43,16 +43,18 @@ def test_make_text_widget(mocker: MockerFixture):
     assert label.DisplayText == "hello:"
 
 
+@pt.mark.skip
 def test_guify():
     @click.command()
-    @click.argument("something", metavar="What to say")
-    @click.option("--debug/nodebug", help="Extra debug output")
+    @click.argument("something", metavar="What to say", default="Hello World")
+    @click.argument("file", metavar="The file", type=click.File())
+    @click.option("--debug/--nodebug", help="Extra debug output", default=True)
     @click.option("--number", type=int, default=4)
-    def hello_world(something, debug, number):
+    def hello_world(something, file, debug, number):
         """
         Say Hello World
         """
-        pass
+        print(f"{debug=}, {number=}")
 
     guified = guify(hello_world)
     guified()
